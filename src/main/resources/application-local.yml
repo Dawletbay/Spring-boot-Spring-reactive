@@ -1,0 +1,55 @@
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/flyway-test
+    name: name
+    username: username
+    password: password
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+  rabbitmq:
+    host: localhost
+    username: guest
+    password: guest
+    port: 5672
+  flyway:
+    enabled: true
+    url: jdbc:postgresql://localhost:5432/flyway-test
+    user: ${spring.r2dbc.username}
+    password: ${spring.r2dbc.password}
+    locations: classpath:db/migration/
+    out-of-order: true
+
+logging:
+  level:
+    org.springframework.r2dbc: debug
+
+application:
+  security:
+    authentication:
+      jwt:
+        # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
+        base64-secret: YTQzNjBkZGE3MDJmY2Q2YmY5M2Y2ZTEzYzY3MDM3ZmYxNGVhZTQ0M2JlYTQ1ZGMzNTIyMjJiYWU2MGZlZDA2ZTQ3OTMwZWI3ZjZjNzE0OTM4NmJkMGM0YzNlNjdmZjZmZDMzM2I2YmVkMjM4MTQ1ODQ5NjAzOGE2MDA4MTBkODE=
+        # Token is valid 24 hours
+        token-validity-in-seconds: 86400
+        token-validity-in-seconds-for-remember-me: 2592000
+  cors:
+    # Allow Ionic for JHipster by default (* no longer allowed in Spring Boot 2.4+)
+    allowed-origins: 'http://localhost:8288,https://localhost:8100,http://localhost:9000,https://localhost:9000,http://localhost:4200,https://localhost:4200'
+    # Enable CORS when running in GitHub Codespaces
+    allowed-origin-patterns: 'https://*.githubpreview.dev'
+    allowed-methods: '*'
+    allowed-headers: '*'
+    exposed-headers: 'Authorization,Link,X-Total-Count,X-${application.clientApp.name}-alert,X-${jhipster.clientApp.name}-error,X-${jhipster.clientApp.name}-params'
+    allow-credentials: true
+    max-age: 1800
+
+  bestConfig:
+    username: username
+    password: password
+    url: https://google.com
+    authUrl: https://google.com/api/login
+    bankListUrl: https://google.com/api/banks/sync/list
+    activityTypeListUrl: https://google.com/api/activity-types/sync/list
+    companyListUrl: https://google.com/api/customers/all

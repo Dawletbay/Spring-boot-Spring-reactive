@@ -1,0 +1,49 @@
+server:
+  port: 8288
+  http2:
+    enabled: true
+  servlet:
+    context-path: /
+  compression:
+    enabled: true
+    mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json
+    min-response-size: 1024
+
+
+spring:
+  application:
+    name: Best Company App
+    admin:
+      enabled: true
+  profiles:
+    active: local
+  r2dbc:
+    pool:
+      enabled: true
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+  rabbitmq:
+    cache:
+      channel:
+        size: 25
+      connection:
+        mode: channel
+
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
+  swagger-ui:
+    use-root-path: true
+    path: /swagger-ui.html
+    enabled: true
+  packages-to-scan: uz.best.company.controller
+
+application:
+  security:
+    content-security-policy: "default-src 'self'; frame-src 'self' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://storage.googleapis.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:"
+  clientApp:
+      name: 'Write something'

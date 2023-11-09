@@ -1,0 +1,11 @@
+application:
+
+  bestConfig:
+    username: username
+    password: password
+    url: https://google.com
+    authUrl: https://google.com/api/login
+    bankListUrl: https://google.com/api/banks/sync/list
+    activityTypeListUrl: https://google.com/api/activity-types/sync/list
+    companyListUrl: https://google.com/api/customers/all
+
