@@ -13,7 +13,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import com.best.company.domain.Bank;
 import com.best.company.dto.bank.BankDTO;
-import com.best.company.dto.integration.best.BankListCtoDTO;
+import com.best.company.dto.integration.best.BankListDTO;
 
 import java.util.UUID;
 
@@ -74,20 +74,20 @@ public class BankService extends BaseService {
                 .then();
     }
 
-    private Mono<Bank> save(BankListCtoDTO bankListCtoDTO) {
-        return bankRepository.findByMfo(bankListCtoDTO.getCode())
-                .flatMap(bank -> this.save(bank, bankListCtoDTO))
-                .switchIfEmpty(this.save(new Bank(), bankListCtoDTO));
+    private Mono<Bank> save(BankListDTO bankListDTO) {
+        return bankRepository.findByMfo(bankListDTO.getMfo())
+                .flatMap(bank -> this.save(bank, bankListDTO))
+                .switchIfEmpty(this.save(new Bank(), bankListDTO));
     }
 
-    private Mono<Bank> save(Bank bank, BankListCtoDTO bankListCtoDTO) {
-        bank.setNameEn(bankListCtoDTO.getName());
-        bank.setCode(bankListCtoDTO.getCategoryCode());
-        bank.setMfo(bankListCtoDTO.getCode());
-        bank.setTin(bankListCtoDTO.getTin());
-        if (StringUtils.isNotEmpty(bankListCtoDTO.getParentCode())) {
+    private Mono<Bank> save(Bank bank, BankListDTO bankListDTO) {
+        bank.setNameEn(bankListDTO.getName());
+        bank.setCode(bankListDTO.getCategoryCode());
+        bank.setMfo(bankListDTO.getMfo());
+        bank.setTin(bankListDTO.getTin());
+        if (StringUtils.isNotEmpty(bankListDTO.getParentCode())) {
             return bankRepository
-                    .findByMfo(bankListCtoDTO.getParentCode())
+                    .findByMfo(bankListDTO.getParentCode())
                     .flatMap(parentBank -> {
                         bank.setParentId(parentBank.getId());
                         return bankRepository.save(bank);

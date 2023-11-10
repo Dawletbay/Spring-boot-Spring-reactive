@@ -9,4 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional(readOnly = true)
 public abstract class BaseService {
+
+    /*@todo You can write here your own logic code(methods, variables,...) that use them in more classes*/
 }

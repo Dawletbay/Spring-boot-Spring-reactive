@@ -12,7 +12,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 import com.best.company.dto.auth.TokenDTO;
-import com.best.company.dto.integration.best.BankListCtoDTO;
+import com.best.company.dto.integration.best.BankListDTO;
 import com.best.company.dto.integration.best.LoginDTO;
 import com.best.company.dto.integration.best.SyncBankListCtoResponseDTO;
 import com.best.company.dto.integration.best.SyncCompanyTinListResponseDTO;
@@ -65,12 +65,12 @@ public class TestClient extends BaseClient {
      * SYNCHRONIZATION
      * Bank
      * */
-    public Flux<BankListCtoDTO> getBanks() {
+    public Flux<BankListDTO> getBanks() {
         return getToken()
-                .flatMapMany(this::getBanksData);
+                .flatMapMany(this::getBank);
     }
 
-    private Flux<BankListCtoDTO> getBanksData(String token) {
+    private Flux<BankListDTO> getBank(String token) {
         UriComponentsBuilder builder = UriComponentsBuilder
                 .fromHttpUrl(applicationProperties.getBestConfig().getBankListUrl())
                 .queryParam("page", 0)
@@ -87,7 +87,7 @@ public class TestClient extends BaseClient {
                 .flatMap(this::getBankList);
     }
 
-    private Flux<BankListCtoDTO> getBankList(SyncBankListCtoResponseDTO syncBankListCtoResponseDTO) {
+    private Flux<BankListDTO> getBankList(SyncBankListCtoResponseDTO syncBankListCtoResponseDTO) {
         return Flux.fromIterable(syncBankListCtoResponseDTO.getContent());
     }
     /*

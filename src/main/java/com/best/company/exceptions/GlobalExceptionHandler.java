@@ -76,7 +76,7 @@ public class GlobalExceptionHandler {
         StringBuilder detailMessage = new StringBuilder();
         detailMessage.append("NULL POINTER EXCEPTION: ");
         detailMessage.append(Optional.ofNullable(ex.getMessage()).orElse(""));
-        detailMessage.append(Arrays.stream(ex.getStackTrace()).map(StackTraceElement::toString).filter(s -> s.contains("uz.smartbox.jobsterjse"))
+        detailMessage.append(Arrays.stream(ex.getStackTrace()).map(StackTraceElement::toString).filter(s -> s.contains("com.best.jobsterjse"))
                 .map(s -> s.replaceAll("[<,>]", "")).collect(Collectors.joining(" \n ")));
         return new ResponseEntity<>(ErrorDTO.builder().title(localizationService.localize("value.null.error")).detail(ex.getMessage()).status(HttpStatus.INTERNAL_SERVER_ERROR.value()).path(request.getRequest().getURI().getPath()).timestamp(LocalDateTime.now().toString()).build(), HttpStatus.INTERNAL_SERVER_ERROR);
     }

@@ -18,28 +18,18 @@ import static lombok.AccessLevel.PRIVATE;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = PRIVATE)
-public class BankListCtoDTO implements Serializable {
+public class BankListDTO implements Serializable {
     static final long serialVersionUID = 1L;
 
     Long id;
 
     String name;
 
-    String code; //MFO
+    String mfo;
 
     String tin;
 
     String parentCode;
 
-    String categoryCode; //Code
-
-    Long regionCode;
-
-    Long districtCode;
-
-    String street;
-
-    String house;
-
-    String apartment;
+    String categoryCode;
 }

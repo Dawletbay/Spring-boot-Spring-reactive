@@ -1,9 +1,9 @@
 package com.best.company.service;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Locale;
 
 import static lombok.AccessLevel.PRIVATE;
-import static lombok.AccessLevel.PUBLIC;
 
 /**
  * Powered by: Dawletbay Tilepbaev
@@ -20,10 +19,9 @@ import static lombok.AccessLevel.PUBLIC;
 @Service
 @Transactional(readOnly = true)
 @FieldDefaults(level = PRIVATE, makeFinal = true)
-@AllArgsConstructor(access = PUBLIC)
+@RequiredArgsConstructor
 public class LocalizationService {
 
-    @Autowired
     MessageSource messageSource;
 
     public String localize(String code) {

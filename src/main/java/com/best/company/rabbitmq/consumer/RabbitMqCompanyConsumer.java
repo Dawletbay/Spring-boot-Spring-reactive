@@ -27,9 +27,9 @@ public class RabbitMqCompanyConsumer implements MqConstants {
     )
     public void syncCompanyTins(CompanyTINPayload payload) {
         try {
-            companyService
-                    .getCompanyData(payload.getTin())
-                    .block();
+//            companyService
+//                    .getCompanyData(payload.getTin())
+//                    .block();
         } catch (Exception e) {
             log.error("Sync company tin queue error: ", e);
             throw new AmqpRejectAndDontRequeueException("Sync company by tin queue error: " + e.getMessage());

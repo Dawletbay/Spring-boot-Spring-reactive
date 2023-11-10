@@ -21,7 +21,6 @@ import com.best.company.dto.company.CompanyDetailDTO;
 import com.best.company.dto.company.CompanyListDTO;
 import com.best.company.dto.integration.some.CompanySomeDTO;
 import com.best.company.exceptions.NotFoundException;
-import uz.best.company.repository.*;
 import com.best.company.service.base.BaseService;
 
 import java.util.Objects;

@@ -7,9 +7,6 @@ import reactor.core.publisher.Mono;
 
 public class SpaWebFilter implements WebFilter {
 
-    /**
-     * Forwards any unmapped paths (except those containing a period) to the client {@code index.html}.
-     */
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         String path = exchange.getRequest().getURI().getPath();
