@@ -64,7 +64,7 @@ public class BankService extends BaseService {
      * START
      * SYNCHRONIZATION
      * BANK Data
-     * From CTS
+     * From Somewhere
      * */
     public Mono<Void> sync() {
         return testClient
@@ -99,6 +99,6 @@ public class BankService extends BaseService {
      * END
      * SYNCHRONIZATION
      * BANK Data
-     * From CTS
+     * From Somewhere
      * */
 }

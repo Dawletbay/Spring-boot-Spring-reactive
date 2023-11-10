@@ -14,7 +14,7 @@ import reactor.core.scheduler.Schedulers;
 import com.best.company.dto.auth.TokenDTO;
 import com.best.company.dto.integration.best.BankListDTO;
 import com.best.company.dto.integration.best.LoginDTO;
-import com.best.company.dto.integration.best.SyncBankListCtoResponseDTO;
+import com.best.company.dto.integration.best.SyncBankListBestResponseDTO;
 import com.best.company.dto.integration.best.SyncCompanyTinListResponseDTO;
 import com.best.company.exceptions.BadRequestException;
 
@@ -83,12 +83,12 @@ public class TestClient extends BaseClient {
                 .uri(builder.toUriString())
                 .headers(httpHeaders -> httpHeaders.setBearerAuth(token))
                 .retrieve()
-                .bodyToFlux(SyncBankListCtoResponseDTO.class)
+                .bodyToFlux(SyncBankListBestResponseDTO.class)
                 .flatMap(this::getBankList);
     }
 
-    private Flux<BankListDTO> getBankList(SyncBankListCtoResponseDTO syncBankListCtoResponseDTO) {
-        return Flux.fromIterable(syncBankListCtoResponseDTO.getContent());
+    private Flux<BankListDTO> getBankList(SyncBankListBestResponseDTO syncBankListBestResponseDTO) {
+        return Flux.fromIterable(syncBankListBestResponseDTO.getContent());
     }
     /*
      * END

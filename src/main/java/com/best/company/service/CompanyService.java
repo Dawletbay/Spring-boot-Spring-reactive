@@ -199,7 +199,7 @@ public class CompanyService extends BaseService {
      * From Tax
      * */
 
-    public Mono<Void> syncCTSCompanyTins() {
+    public Mono<Void> syncCompanyTins() {
         return testClient
                 .getTins()
                 .then();

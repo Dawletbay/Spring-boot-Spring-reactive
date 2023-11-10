@@ -35,7 +35,7 @@ public class CronJob {
     @Scheduled(fixedRate = 7776000000l)
     public void syncBestCompanyTins() {
         companyService
-                .syncCTSCompanyTins()
+                .syncCompanyTins()
                 .block();
     }
 }
