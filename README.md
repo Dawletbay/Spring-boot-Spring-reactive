@@ -7,4 +7,7 @@ Reactive web client;
 Reactive Postgresql;
 Reactive R2DBC;
 Reactive functional;
+RabbitMq;
+Flyway;
+
 
